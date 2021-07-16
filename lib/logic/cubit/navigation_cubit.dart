@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/page/home_page.dart';
+import 'package:flutter_template/presentation/page/fish_page.dart';
 
 part 'navigation_state.dart';
 
 class NavigationCubit extends Cubit<NavigationState> {
   NavigationCubit({
     List<Widget> pages = const [
-      HomePage(),
+      FishPage(),
     ],
   }) : super(NavigationState(pages));
 

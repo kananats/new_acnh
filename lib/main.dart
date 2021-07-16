@@ -2,7 +2,11 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/constant/theme_constant.dart';
+import 'package:flutter_template/data/api/repository/fish_repository.dart';
+import 'package:flutter_template/data/database/database.dart';
+import 'package:flutter_template/logic/cubit/fish_cubit.dart';
 import 'package:flutter_template/logic/cubit/navigation_cubit.dart';
+import 'package:flutter_template/presentation/page/fish_page.dart';
 import 'package:flutter_template/util/locator.dart';
 
 Future<void> main() async {
@@ -12,11 +16,11 @@ Future<void> main() async {
   // Ensure WidgetsFlutterBinding is initialized
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Setup local database
+  await Database.initialize();
+
   // Setup dependency injection
   setupLocator();
-
-  // Uncomment this if we need local db
-  // await Boxes.initialize();
 
   runApp(App());
 }
@@ -27,6 +31,7 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
+  late final _fishCubit = FishCubit();
   late final _navigationCubit = NavigationCubit();
 
   @override
@@ -64,7 +69,9 @@ class _AppState extends State<App> {
   }
 
   Widget _withBlocProviders(Widget child) {
-    final List<BlocProvider> providers = [];
+    final List<BlocProvider> providers = [
+      if (child is FishPage) BlocProvider<FishCubit>.value(value: _fishCubit),
+    ];
 
     if (providers.isEmpty) return child;
 

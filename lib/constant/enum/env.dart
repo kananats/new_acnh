@@ -21,7 +21,7 @@ extension EnvExtension on Env {
         return MockDio();
       case Env.stg:
         return Dio(
-          BaseOptions(baseUrl: "STG_BASE_URL_HERE"),
+          BaseOptions(baseUrl: "https://acnhapi.com"),
         );
       case Env.prod:
         return Dio(
