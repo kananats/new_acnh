@@ -27,13 +27,15 @@ class FishEntityAdapter extends TypeAdapter<FishEntity> {
       museumPhrase: fields[7] as String,
       imageUri: fields[8] as String,
       iconUri: fields[9] as String,
+      isCaught: fields[10] as bool,
+      isDonated: fields[11] as bool,
     );
   }
 
   @override
   void write(BinaryWriter writer, FishEntity obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +55,11 @@ class FishEntityAdapter extends TypeAdapter<FishEntity> {
       ..writeByte(8)
       ..write(obj.imageUri)
       ..writeByte(9)
-      ..write(obj.iconUri);
+      ..write(obj.iconUri)
+      ..writeByte(10)
+      ..write(obj.isCaught)
+      ..writeByte(11)
+      ..write(obj.isDonated);
   }
 
   @override

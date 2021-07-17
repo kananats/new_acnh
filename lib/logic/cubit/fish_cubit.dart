@@ -27,4 +27,20 @@ class FishCubit extends Cubit<FishState> {
 
     emit(ReadyFishState(fishes: fishes));
   }
+
+  Future<void> toggleIsCaught(Fish fish) async {
+    final newFish = fish.copyWith(isCaught: !fish.isCaught);
+
+    await fishRepository.updateFish(newFish);
+
+    await fetch();
+  }
+
+  Future<void> toggleIsDonated(Fish fish) async {
+    final newFish = fish.copyWith(isDonated: !fish.isDonated);
+
+    await fishRepository.updateFish(newFish);
+
+    await fetch();
+  }
 }

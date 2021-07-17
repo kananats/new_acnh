@@ -25,4 +25,8 @@ class FishRepository {
       return Fish.fromEntity(entity);
     }).toList();
   }
+
+  Future<void> updateFish(Fish fish) async {
+    await database.fishDao.insert(fish.id, FishEntity.fromModel(fish));
+  }
 }

@@ -81,7 +81,7 @@ class _AppState extends State<App> {
         BlocProvider<FishCubit>.value(value: _fishCubit),
       if (child is FishListPage || child is SettingsPage)
         BlocProvider<LanguageCubit>.value(value: _languageCubit),
-      if (child is SettingsPage)
+      if (child is FishListPage || child is SettingsPage)
         BlocProvider<TimeCubit>.value(value: _timeCubit),
     ];
 

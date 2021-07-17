@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'package:flutter_template/data/api/response/name_response.dart';
+import 'package:flutter_template/model/name.dart';
 import 'package:hive/hive.dart';
 
 part 'name_entity.g.dart';
@@ -82,6 +83,25 @@ class NameEntity extends HiveObject {
       JPja: response.JPja,
       KRko: response.KRko,
       EUru: response.EUru,
+    );
+  }
+
+  factory NameEntity.fromModel(Name model) {
+    return NameEntity(
+      USen: model.USen,
+      EUen: model.EUen,
+      EUde: model.EUde,
+      EUes: model.EUes,
+      USes: model.USes,
+      EUfr: model.EUfr,
+      USfr: model.USfr,
+      EUit: model.EUit,
+      EUnl: model.EUnl,
+      CNzh: model.CNzh,
+      TWzh: model.TWzh,
+      JPja: model.JPja,
+      KRko: model.KRko,
+      EUru: model.EUru,
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter_template/data/api/response/fish_response.dart';
 import 'package:flutter_template/data/database/entity/availability_entity.dart';
 import 'package:flutter_template/data/database/entity/name_entity.dart';
+import 'package:flutter_template/model/fish.dart';
 import 'package:hive/hive.dart';
 
 part 'fish_entity.g.dart';
@@ -37,6 +38,12 @@ class FishEntity extends HiveObject {
   @HiveField(9)
   final String iconUri;
 
+  @HiveField(10)
+  final bool isCaught;
+
+  @HiveField(11)
+  final bool isDonated;
+
   FishEntity({
     required this.id,
     required this.fileName,
@@ -48,6 +55,8 @@ class FishEntity extends HiveObject {
     required this.museumPhrase,
     required this.imageUri,
     required this.iconUri,
+    required this.isCaught,
+    required this.isDonated,
   });
 
   factory FishEntity.fromResponse(FishResponse response) {
@@ -62,6 +71,25 @@ class FishEntity extends HiveObject {
       museumPhrase: response.museumPhrase,
       imageUri: response.imageUri,
       iconUri: response.iconUri,
+      isCaught: false,
+      isDonated: false,
+    );
+  }
+
+  factory FishEntity.fromModel(Fish model) {
+    return FishEntity(
+      id: model.id,
+      fileName: model.fileName,
+      name: NameEntity.fromModel(model.name),
+      availability: AvailabilityEntity.fromModel(model.availability),
+      shadow: model.shadow,
+      price: model.price,
+      catchPhrase: model.catchPhrase,
+      museumPhrase: model.museumPhrase,
+      imageUri: model.imageUri,
+      iconUri: model.iconUri,
+      isCaught: model.isCaught,
+      isDonated: model.isDonated,
     );
   }
 }

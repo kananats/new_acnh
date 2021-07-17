@@ -1,4 +1,5 @@
 import 'package:flutter_template/data/api/response/availability_response.dart';
+import 'package:flutter_template/model/availability.dart';
 import 'package:hive/hive.dart';
 
 part 'availability_entity.g.dart';
@@ -45,6 +46,18 @@ class AvailabilityEntity extends HiveObject {
       monthArrayNorthern: response.monthArrayNorthern,
       monthArraySouthern: response.monthArraySouthern,
       timeArray: response.timeArray,
+    );
+  }
+
+  factory AvailabilityEntity.fromModel(Availability model) {
+    return AvailabilityEntity(
+      monthNorthern: model.monthNorthern,
+      monthSouthern: model.monthSouthern,
+      location: model.location,
+      rarity: model.rarity,
+      monthArrayNorthern: model.monthArrayNorthern,
+      monthArraySouthern: model.monthArraySouthern,
+      timeArray: model.timeArray,
     );
   }
 }
