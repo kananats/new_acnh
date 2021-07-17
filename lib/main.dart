@@ -6,6 +6,7 @@ import 'package:flutter_template/data/database/database.dart';
 import 'package:flutter_template/logic/cubit/fish_cubit.dart';
 import 'package:flutter_template/logic/cubit/language_cubit.dart';
 import 'package:flutter_template/logic/cubit/navigation_cubit.dart';
+import 'package:flutter_template/logic/cubit/time_cubit.dart';
 import 'package:flutter_template/presentation/page/fish_list_page.dart';
 import 'package:flutter_template/presentation/page/settings_page.dart';
 import 'package:flutter_template/util/locator.dart';
@@ -35,12 +36,14 @@ class _AppState extends State<App> {
   late final _fishCubit = FishCubit();
   late final _languageCubit = LanguageCubit();
   late final _navigationCubit = NavigationCubit();
+  late final _timeCubit = TimeCubit();
 
   @override
   void dispose() {
     _fishCubit.close();
     _languageCubit.close();
     _navigationCubit.close();
+    _timeCubit.close();
 
     super.dispose();
   }
@@ -78,6 +81,8 @@ class _AppState extends State<App> {
         BlocProvider<FishCubit>.value(value: _fishCubit),
       if (child is FishListPage || child is SettingsPage)
         BlocProvider<LanguageCubit>.value(value: _languageCubit),
+      if (child is SettingsPage)
+        BlocProvider<TimeCubit>.value(value: _timeCubit),
     ];
 
     if (providers.isEmpty) return child;

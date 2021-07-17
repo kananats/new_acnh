@@ -5,4 +5,6 @@ part 'shared_prefs_key_enum.g.dart';
 @RawRepresentable()
 enum SharedPrefsKeyEnum {
   language,
+  dateTimeOffset,
+  freezedDateTime,
 }

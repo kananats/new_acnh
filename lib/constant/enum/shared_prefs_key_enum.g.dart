@@ -11,6 +11,10 @@ extension $SharedPrefsKeyEnumExtension on SharedPrefsKeyEnum {
     switch (this) {
       case SharedPrefsKeyEnum.language:
         return "language";
+      case SharedPrefsKeyEnum.dateTimeOffset:
+        return "dateTimeOffset";
+      case SharedPrefsKeyEnum.freezedDateTime:
+        return "freezedDateTime";
     }
   }
 

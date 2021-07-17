@@ -29,27 +29,53 @@ class SharedPrefs {
     );
   }
 
-/*
-  Future<DateTime?> getAccessTokenExpiredAt() async {
+  Future<Duration?> getDateTimeOffset() async {
+    final sharedPreferences = await this.sharedPreferences;
+
+    final intValue =
+        sharedPreferences.getInt(SharedPrefsKeyEnum.dateTimeOffset.rawValue);
+
+    if (intValue == null) return null;
+
+    return Duration(microseconds: intValue);
+  }
+
+  Future<void> setDateTimeOffset(Duration? value) async {
+    final sharedPreferences = await this.sharedPreferences;
+
+    if (value != null)
+      await sharedPreferences.setInt(
+        SharedPrefsKeyEnum.dateTimeOffset.rawValue,
+        value.inMicroseconds,
+      );
+    else
+      await sharedPreferences
+          .remove(SharedPrefsKeyEnum.dateTimeOffset.rawValue);
+  }
+
+  Future<DateTime?> getFreezedDateTime() async {
     final sharedPreferences = await this.sharedPreferences;
 
     final stringValue = sharedPreferences
-        .getString(SharedPrefsKeyEnum.accessTokenExpiredAt.rawValue);
+        .getString(SharedPrefsKeyEnum.freezedDateTime.rawValue);
 
     if (stringValue == null) return null;
-
     return DateTime.parse(stringValue);
   }
 
-  Future<void> setAccessTokenExpiredAt(DateTime value) async {
+  Future<void> setFreezedDateTime(DateTime? value) async {
     final sharedPreferences = await this.sharedPreferences;
 
-    await sharedPreferences.setString(
-      SharedPrefsKeyEnum.accessTokenExpiredAt.rawValue,
-      value.toIso8601String(),
-    );
+    if (value != null)
+      await sharedPreferences.setString(
+        SharedPrefsKeyEnum.freezedDateTime.rawValue,
+        value.toIso8601String(),
+      );
+    else
+      await sharedPreferences
+          .remove(SharedPrefsKeyEnum.freezedDateTime.rawValue);
   }
-*/
+
   Future<SharedPreferences> get sharedPreferences async {
     return await SharedPreferences.getInstance();
   }
