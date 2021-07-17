@@ -1,5 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 
+import 'package:flutter_template/constant/enum/language_enum.dart';
 import 'package:flutter_template/data/database/entity/name_entity.dart';
 
 class Name {
@@ -65,5 +66,40 @@ class Name {
       KRko: entity.KRko,
       EUru: entity.EUru,
     );
+  }
+}
+
+extension NameExtension on Name {
+  String of(LanguageEnum language) {
+    switch (language) {
+      case LanguageEnum.USen:
+        return USen;
+      case LanguageEnum.EUen:
+        return EUen;
+      case LanguageEnum.EUde:
+        return EUde;
+      case LanguageEnum.EUes:
+        return EUes;
+      case LanguageEnum.USes:
+        return USes;
+      case LanguageEnum.EUfr:
+        return EUfr;
+      case LanguageEnum.USfr:
+        return USfr;
+      case LanguageEnum.EUit:
+        return EUit;
+      case LanguageEnum.EUnl:
+        return EUnl;
+      case LanguageEnum.CNzh:
+        return CNzh;
+      case LanguageEnum.TWzh:
+        return TWzh;
+      case LanguageEnum.JPja:
+        return JPja;
+      case LanguageEnum.KRko:
+        return KRko;
+      case LanguageEnum.EUru:
+        return EUru;
+    }
   }
 }

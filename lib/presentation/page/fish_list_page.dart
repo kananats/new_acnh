@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/logic/cubit/fish_cubit.dart';
 import 'package:flutter_template/model/fish.dart';
+import 'package:flutter_template/presentation/widget/app_drawer.dart';
+import 'package:flutter_template/presentation/widget/fish_list_item_widget.dart';
 import 'package:provider/provider.dart';
 
-class FishPage extends StatefulWidget {
-  const FishPage({
+class FishListPage extends StatefulWidget {
+  const FishListPage({
     Key? key,
   }) : super(key: key);
 
   @override
-  _FishPageState createState() => _FishPageState();
+  _FishListPageState createState() => _FishListPageState();
 }
 
-class _FishPageState extends State<FishPage> {
+class _FishListPageState extends State<FishListPage> {
   @override
   void initState() {
     super.initState();
@@ -26,6 +28,7 @@ class _FishPageState extends State<FishPage> {
     return BlocBuilder<FishCubit, FishState>(
       builder: (context, state) {
         return Scaffold(
+          drawer: AppDrawer(),
           appBar: AppBar(
             title: Text(
               state is ReadyFishState
@@ -45,15 +48,8 @@ class _FishPageState extends State<FishPage> {
     return ListView.builder(
       itemCount: fishes.length,
       itemBuilder: (context, index) {
-        return _buildFishListTile(fishes[index]);
+        return FishListItemWidget(fishes[index]);
       },
-    );
-  }
-
-  Widget _buildFishListTile(Fish fish) {
-    return ExpansionTile(
-      leading: Image.network(fish.iconUri),
-      title: Text(fish.fileName),
     );
   }
 
