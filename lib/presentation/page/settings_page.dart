@@ -42,7 +42,7 @@ class SettingsPage extends StatelessWidget {
                 items: LanguageEnum.values.map((language) {
                   return DropdownMenuItem<LanguageEnum>(
                     value: language,
-                    child: Text(language.toString()),
+                    child: Text(language.rawValue),
                   );
                 }).toList(),
               );

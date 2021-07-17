@@ -9,8 +9,8 @@ part of 'shared_prefs_key_enum.dart';
 extension $SharedPrefsKeyEnumExtension on SharedPrefsKeyEnum {
   String get rawValue {
     switch (this) {
-      case SharedPrefsKeyEnum.accessTokenExpiredAt:
-        return "accessTokenExpiredAt";
+      case SharedPrefsKeyEnum.language:
+        return "language";
     }
   }
 
