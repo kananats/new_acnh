@@ -37,6 +37,11 @@ class FishListItemWidget extends StatelessWidget {
               previous.dateTime.hour != current.dateTime.hour;
         },
         builder: (context, state) {
+          HemisphereEnum hemisphere = HemisphereEnum.northern;
+          final fishState = context.read<FishCubit>().state;
+          if (fishState is ReadyFishState)
+            hemisphere = fishState.filter.hemisphere;
+
           return Wrap(
             spacing: 8,
             children: [
@@ -46,7 +51,7 @@ class FishListItemWidget extends StatelessWidget {
               if (fish.availability.isAllDay) const TagWidget("All Day"),
               if (fish.availability.isAvailable(
                 state.dateTime,
-                hemisphere: HemisphereEnum.north,
+                hemisphere: hemisphere,
               ))
                 const TagWidget("Now"),
             ],

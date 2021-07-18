@@ -65,6 +65,7 @@ class FishFilter extends Equatable {
 
   @override
   List<Object?> get props => [
+        hemisphere,
         showCaught,
         showDonated,
         hideAllYear,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
 import 'package:flutter_template/model/fish_filter.dart';
 
 class FishFilterDialog extends StatefulWidget {
@@ -31,6 +32,8 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
           _buildHeader(),
           const Divider(),
           const SizedBox(height: 12),
+          _buildHemispherePicker(),
+          const SizedBox(height: 12),
           _buildCaughtFilter(),
           const SizedBox(height: 12),
           _buildDonatedFilter(),
@@ -53,6 +56,32 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
       style: TextStyle(
         fontSize: 32,
         color: Theme.of(context).primaryColor,
+      ),
+    );
+  }
+
+  Widget _buildHemispherePicker() {
+    return SizedBox(
+      height: 36,
+      child: Row(
+        children: [
+          const Text("Hemisphere"),
+          const SizedBox(width: 12),
+          Expanded(
+            child: DropdownButton<HemisphereEnum>(
+              value: _filter.hemisphere,
+              onChanged: (value) {
+                setState(() => _filter = _filter.copyWith(hemisphere: value));
+              },
+              items: HemisphereEnum.values.map((hemisphere) {
+                return DropdownMenuItem<HemisphereEnum>(
+                  value: hemisphere,
+                  child: Text(hemisphere.rawValue),
+                );
+              }).toList(),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -88,7 +117,7 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -125,7 +154,7 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

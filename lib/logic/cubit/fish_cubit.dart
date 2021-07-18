@@ -33,7 +33,7 @@ class FishCubit extends Cubit<FishState> {
       ReadyFishState(
         fishes,
         filter: const FishFilter(
-          hemisphere: HemisphereEnum.north,
+          hemisphere: HemisphereEnum.northern,
           showCaught: [true, true],
           showDonated: [true, true],
           hideAllYear: false,

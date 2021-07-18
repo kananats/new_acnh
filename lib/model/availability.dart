@@ -53,10 +53,10 @@ extension AvailabilityExtension on Availability {
     required HemisphereEnum hemisphere,
   }) {
     switch (hemisphere) {
-      case HemisphereEnum.north:
+      case HemisphereEnum.northern:
         return monthArrayNorthern.contains(dateTime.month) &&
             timeArray.contains(dateTime.hour);
-      case HemisphereEnum.south:
+      case HemisphereEnum.southern:
         return monthArraySouthern.contains(dateTime.month) &&
             timeArray.contains(dateTime.hour);
     }
