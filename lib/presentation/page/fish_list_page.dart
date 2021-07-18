@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_template/logic/cubit/fish_cubit.dart';
+import 'package:flutter_template/logic/cubit/time_cubit.dart';
 import 'package:flutter_template/model/fish.dart';
 import 'package:flutter_template/model/fish_filter.dart';
 import 'package:flutter_template/presentation/widget/app_drawer.dart';
@@ -28,13 +29,13 @@ class _FishListPageState extends State<FishListPage> {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<FishCubit, FishState>(
-      builder: (context, state) {
+      builder: (context, fishState) {
         return Scaffold(
           drawer: AppDrawer(),
           appBar: AppBar(
             title: Text(
-              state is ReadyFishState
-                  ? "Fish (${state.fishes.length})"
+              fishState is ReadyFishState
+                  ? "Fish (${fishState.fishes.length})"
                   : "Fish",
             ),
           ),
@@ -42,10 +43,25 @@ class _FishListPageState extends State<FishListPage> {
             onPressed: () async => await _showFilterDialog(),
             child: const Icon(Icons.tune),
           ),
-          body: state is ReadyFishState
-              ? _buildFishList(state.fishes
-                  .where((fish) => state.filter.apply(fish))
-                  .toList())
+          body: fishState is ReadyFishState
+              ? BlocBuilder<TimeCubit, TimeState>(
+                  buildWhen: (previous, current) {
+                    return previous.dateTime.month != current.dateTime.month ||
+                        previous.dateTime.hour != current.dateTime.hour;
+                  },
+                  builder: (context, timeState) {
+                    return _buildFishList(
+                      fishState.fishes
+                          .where(
+                            (fish) => fishState.filter.apply(
+                              fish,
+                              dateTime: timeState.dateTime,
+                            ),
+                          )
+                          .toList(),
+                    );
+                  },
+                )
               : _buildLoadingIndicator(),
         );
       },

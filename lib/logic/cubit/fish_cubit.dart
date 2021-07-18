@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
 import 'package:flutter_template/data/api/repository/fish_repository.dart';
 import 'package:flutter_template/model/fish.dart';
 import 'package:flutter_template/model/fish_filter.dart';
@@ -26,12 +27,18 @@ class FishCubit extends Cubit<FishState> {
       );
     }
 
+    // TODO:
+
     emit(
       ReadyFishState(
         fishes,
         filter: const FishFilter(
+          hemisphere: HemisphereEnum.north,
           showCaught: [true, true],
           showDonated: [true, true],
+          hideAllYear: false,
+          hideAllDay: false,
+          showOnlyNow: false,
         ),
       ),
     );

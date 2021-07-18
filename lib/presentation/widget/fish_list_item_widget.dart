@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
 import 'package:flutter_template/logic/cubit/fish_cubit.dart';
 import 'package:flutter_template/logic/cubit/language_cubit.dart';
 import 'package:flutter_template/logic/cubit/time_cubit.dart';
@@ -45,7 +46,7 @@ class FishListItemWidget extends StatelessWidget {
               if (fish.availability.isAllDay) const TagWidget("All Day"),
               if (fish.availability.isAvailable(
                 state.dateTime,
-                isNorth: true,
+                hemisphere: HemisphereEnum.north,
               ))
                 const TagWidget("Now"),
             ],

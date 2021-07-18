@@ -1,3 +1,4 @@
+import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
 import 'package:flutter_template/data/database/entity/availability_entity.dart';
 
 class Availability {
@@ -49,14 +50,15 @@ extension AvailabilityExtension on Availability {
 
   bool isAvailable(
     DateTime dateTime, {
-    required bool isNorth,
+    required HemisphereEnum hemisphere,
   }) {
-    if (isNorth) {
-      return monthArrayNorthern.contains(dateTime.month) &&
-          timeArray.contains(dateTime.hour);
-    } else {
-      return monthArraySouthern.contains(dateTime.month) &&
-          timeArray.contains(dateTime.hour);
+    switch (hemisphere) {
+      case HemisphereEnum.north:
+        return monthArrayNorthern.contains(dateTime.month) &&
+            timeArray.contains(dateTime.hour);
+      case HemisphereEnum.south:
+        return monthArraySouthern.contains(dateTime.month) &&
+            timeArray.contains(dateTime.hour);
     }
   }
 }

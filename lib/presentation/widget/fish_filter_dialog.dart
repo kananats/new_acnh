@@ -26,6 +26,7 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
       child: ListView(
         shrinkWrap: true,
         padding: const EdgeInsets.all(12),
+        physics: const ClampingScrollPhysics(),
         children: [
           _buildHeader(),
           const Divider(),
@@ -33,6 +34,12 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
           _buildCaughtFilter(),
           const SizedBox(height: 12),
           _buildDonatedFilter(),
+          const SizedBox(height: 12),
+          _buildHideAllYear(),
+          const SizedBox(height: 12),
+          _buildHideAllDay(),
+          const SizedBox(height: 12),
+          _buildShowOnlyNow(),
           const SizedBox(height: 12),
           _buildButtonBar(),
         ],
@@ -139,6 +146,66 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
             Navigator.of(context).pop(_filter);
           },
           child: const Text("Apply"),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHideAllYear() {
+    return Row(
+      children: [
+        const Expanded(
+          child: Text("Hide All Year"),
+        ),
+        Expanded(
+          child: Checkbox(
+            value: _filter.hideAllYear,
+            onChanged: (value) {
+              setState(
+                () => _filter = _filter.copyWith(hideAllYear: value),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildHideAllDay() {
+    return Row(
+      children: [
+        const Expanded(
+          child: Text("Hide All Day"),
+        ),
+        Expanded(
+          child: Checkbox(
+            value: _filter.hideAllDay,
+            onChanged: (value) {
+              setState(
+                () => _filter = _filter.copyWith(hideAllDay: value),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildShowOnlyNow() {
+    return Row(
+      children: [
+        const Expanded(
+          child: Text("Show Only Now"),
+        ),
+        Expanded(
+          child: Checkbox(
+            value: _filter.showOnlyNow,
+            onChanged: (value) {
+              setState(
+                () => _filter = _filter.copyWith(showOnlyNow: value),
+              );
+            },
+          ),
         ),
       ],
     );
