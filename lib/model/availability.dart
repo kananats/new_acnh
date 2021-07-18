@@ -1,5 +1,5 @@
-import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
-import 'package:flutter_template/data/database/entity/availability_entity.dart';
+import 'package:new_acnh/constant/enum/hemisphere_enum.dart';
+import 'package:new_acnh/data/database/entity/availability_entity.dart';
 
 class Availability {
   final String monthNorthern;

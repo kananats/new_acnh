@@ -1,5 +1,5 @@
-import 'package:flutter_template/data/api/response/availability_response.dart';
-import 'package:flutter_template/data/api/response/name_response.dart';
+import 'package:new_acnh/data/api/response/availability_response.dart';
+import 'package:new_acnh/data/api/response/name_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'fish_response.g.dart';

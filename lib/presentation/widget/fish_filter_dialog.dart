@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
-import 'package:flutter_template/model/fish_filter.dart';
+import 'package:new_acnh/constant/enum/hemisphere_enum.dart';
+import 'package:new_acnh/model/fish_filter.dart';
 
 class FishFilterDialog extends StatefulWidget {
   final FishFilter filter;

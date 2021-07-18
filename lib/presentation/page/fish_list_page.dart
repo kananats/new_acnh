@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/constant/enum/language_enum.dart';
-import 'package:flutter_template/logic/cubit/fish_cubit.dart';
-import 'package:flutter_template/logic/cubit/language_cubit.dart';
-import 'package:flutter_template/logic/cubit/time_cubit.dart';
-import 'package:flutter_template/model/fish.dart';
-import 'package:flutter_template/model/fish_filter.dart';
-import 'package:flutter_template/presentation/widget/app_drawer.dart';
-import 'package:flutter_template/presentation/widget/fish_filter_dialog.dart';
-import 'package:flutter_template/presentation/widget/fish_list_item_widget.dart';
-import 'package:flutter_template/util/debounce.dart';
+import 'package:new_acnh/constant/enum/language_enum.dart';
+import 'package:new_acnh/logic/cubit/fish_cubit.dart';
+import 'package:new_acnh/logic/cubit/language_cubit.dart';
+import 'package:new_acnh/logic/cubit/navigation_cubit.dart';
+import 'package:new_acnh/logic/cubit/time_cubit.dart';
+import 'package:new_acnh/model/fish.dart';
+import 'package:new_acnh/model/fish_filter.dart';
+import 'package:new_acnh/presentation/widget/app_drawer.dart';
+import 'package:new_acnh/presentation/widget/fish_filter_dialog.dart';
+import 'package:new_acnh/presentation/widget/fish_list_item_widget.dart';
+import 'package:new_acnh/util/debounce.dart';
 import 'package:provider/provider.dart';
 
 class FishListPage extends StatefulWidget {
@@ -57,23 +58,9 @@ class _FishListPageState extends State<FishListPage> {
                   builder: (context, timeState) {
                     return Column(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: TextField(
-                            decoration: const InputDecoration(
-                              icon: Icon(Icons.search),
-                            ),
-                            onChanged: (value) {
-                              _debounce(() {
-                                final newFilter =
-                                    fishState.filter.copyWith(query: value);
-
-                                context
-                                    .read<FishCubit>()
-                                    .applyFilter(newFilter);
-                              });
-                            },
-                          ),
+                        _buildQueryTextField(
+                          context,
+                          filter: fishState.filter,
                         ),
                         Expanded(
                           child: BlocBuilder<LanguageCubit, LanguageState>(
@@ -105,15 +92,41 @@ class _FishListPageState extends State<FishListPage> {
     );
   }
 
+  Widget _buildQueryTextField(
+    BuildContext context, {
+    required FishFilter filter,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: TextField(
+        decoration: const InputDecoration(
+          icon: Icon(Icons.search),
+        ),
+        onChanged: (value) {
+          _debounce(() {
+            final newFilter = filter.copyWith(query: value);
+
+            context.read<FishCubit>().applyFilter(newFilter);
+          });
+        },
+      ),
+    );
+  }
+
   Widget _buildFishList(List<Fish> fishes) {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: fishes.length,
       itemBuilder: (context, index) {
         final fish = fishes[index];
-        return FishListItemWidget(
-          fish,
-          key: ValueKey(fish.id),
+        return GestureDetector(
+          onLongPress: () {
+            context.read<NavigationCubit>().navigateToFish(fish);
+          },
+          child: FishListItemWidget(
+            fish,
+            key: ValueKey(fish.id),
+          ),
         );
       },
     );

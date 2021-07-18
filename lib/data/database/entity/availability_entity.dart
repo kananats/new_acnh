@@ -1,5 +1,5 @@
-import 'package:flutter_template/data/api/response/availability_response.dart';
-import 'package:flutter_template/model/availability.dart';
+import 'package:new_acnh/data/api/response/availability_response.dart';
+import 'package:new_acnh/model/availability.dart';
 import 'package:hive/hive.dart';
 
 part 'availability_entity.g.dart';

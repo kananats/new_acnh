@@ -1,10 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
-import 'package:flutter_template/data/api/repository/fish_repository.dart';
-import 'package:flutter_template/model/fish.dart';
-import 'package:flutter_template/model/fish_filter.dart';
-import 'package:flutter_template/util/locator.dart';
+import 'package:new_acnh/constant/enum/hemisphere_enum.dart';
+import 'package:new_acnh/data/api/repository/fish_repository.dart';
+import 'package:new_acnh/model/fish.dart';
+import 'package:new_acnh/model/fish_filter.dart';
+import 'package:new_acnh/util/locator.dart';
 
 part 'fish_state.dart';
 

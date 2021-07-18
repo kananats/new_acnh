@@ -1,7 +1,7 @@
 // ignore_for_file: constant_identifier_names
 
-import 'package:flutter_template/constant/annotation/raw_representable.dart';
-import 'package:flutter_template/constant/annotation/raw_value.dart';
+import 'package:new_acnh/constant/annotation/raw_representable.dart';
+import 'package:new_acnh/constant/annotation/raw_value.dart';
 
 part 'language_enum.g.dart';
 

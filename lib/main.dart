@@ -1,15 +1,16 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/constant/theme_constant.dart';
-import 'package:flutter_template/data/database/database.dart';
-import 'package:flutter_template/logic/cubit/fish_cubit.dart';
-import 'package:flutter_template/logic/cubit/language_cubit.dart';
-import 'package:flutter_template/logic/cubit/navigation_cubit.dart';
-import 'package:flutter_template/logic/cubit/time_cubit.dart';
-import 'package:flutter_template/presentation/page/fish_list_page.dart';
-import 'package:flutter_template/presentation/page/settings_page.dart';
-import 'package:flutter_template/util/locator.dart';
+import 'package:new_acnh/constant/theme_constant.dart';
+import 'package:new_acnh/data/database/database.dart';
+import 'package:new_acnh/logic/cubit/fish_cubit.dart';
+import 'package:new_acnh/logic/cubit/language_cubit.dart';
+import 'package:new_acnh/logic/cubit/navigation_cubit.dart';
+import 'package:new_acnh/logic/cubit/time_cubit.dart';
+import 'package:new_acnh/presentation/page/fish_list_page.dart';
+import 'package:new_acnh/presentation/page/fish_page.dart';
+import 'package:new_acnh/presentation/page/settings_page.dart';
+import 'package:new_acnh/util/locator.dart';
 
 Future<void> main() async {
   // This will turn Object.toString() to readable format
@@ -55,7 +56,7 @@ class _AppState extends State<App> {
         BlocProvider<NavigationCubit>.value(value: _navigationCubit),
       ],
       child: MaterialApp(
-        title: "My App",
+        title: "New ACNH",
         theme: ThemeConstant.theme,
         debugShowCheckedModeBanner: false,
         home: BlocBuilder<NavigationCubit, NavigationState>(
@@ -77,9 +78,9 @@ class _AppState extends State<App> {
 
   Widget _withBlocProviders(Widget child) {
     final List<BlocProvider> providers = [
-      if (child is FishListPage)
+      if (child is FishListPage || child is FishPage)
         BlocProvider<FishCubit>.value(value: _fishCubit),
-      if (child is FishListPage || child is SettingsPage)
+      if (child is FishListPage || child is FishPage || child is SettingsPage)
         BlocProvider<LanguageCubit>.value(value: _languageCubit),
       if (child is FishListPage || child is SettingsPage)
         BlocProvider<TimeCubit>.value(value: _timeCubit),

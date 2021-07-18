@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/constant/exception/http_exception.dart';
-import 'package:flutter_template/data/api/response/fish_response.dart';
-import 'package:flutter_template/util/locator.dart';
+import 'package:new_acnh/constant/exception/http_exception.dart';
+import 'package:new_acnh/data/api/response/fish_response.dart';
+import 'package:new_acnh/util/locator.dart';
 
 class Api {
   final dio = locator.get<Dio>();

@@ -1,9 +1,9 @@
-import 'package:flutter_template/constant/enum/env.dart';
-import 'package:flutter_template/data/api/api.dart';
-import 'package:flutter_template/data/api/repository/fish_repository.dart';
-import 'package:flutter_template/data/database/database.dart';
-import 'package:flutter_template/data/storage/secure_storage.dart';
-import 'package:flutter_template/data/storage/shared_prefs.dart';
+import 'package:new_acnh/constant/enum/env.dart';
+import 'package:new_acnh/data/api/api.dart';
+import 'package:new_acnh/data/api/repository/fish_repository.dart';
+import 'package:new_acnh/data/database/database.dart';
+import 'package:new_acnh/data/storage/secure_storage.dart';
+import 'package:new_acnh/data/storage/shared_prefs.dart';
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;

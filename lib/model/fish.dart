@@ -1,8 +1,9 @@
-import 'package:flutter_template/data/database/entity/fish_entity.dart';
-import 'package:flutter_template/model/availability.dart';
-import 'package:flutter_template/model/name.dart';
+import 'package:equatable/equatable.dart';
+import 'package:new_acnh/data/database/entity/fish_entity.dart';
+import 'package:new_acnh/model/availability.dart';
+import 'package:new_acnh/model/name.dart';
 
-class Fish {
+class Fish extends Equatable {
   final int id;
 
   final String fileName;
@@ -88,4 +89,7 @@ class Fish {
       isDonated: isDonated ?? this.isDonated,
     );
   }
+
+  @override
+  List<Object?> get props => [id, isCaught, isDonated];
 }

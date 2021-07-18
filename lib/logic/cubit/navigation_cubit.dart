@@ -3,15 +3,19 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/page/fish_list_page.dart';
-import 'package:flutter_template/presentation/page/settings_page.dart';
+import 'package:new_acnh/model/fish.dart';
+import 'package:new_acnh/presentation/page/fish_list_page.dart';
+import 'package:new_acnh/presentation/page/fish_page.dart';
+import 'package:new_acnh/presentation/page/settings_page.dart';
 
 part 'navigation_state.dart';
 
 class NavigationCubit extends Cubit<NavigationState> {
   NavigationCubit({
     List<Widget> pages = const [
-      FishListPage(),
+      FishListPage(
+        key: ValueKey("FishListPage"),
+      ),
     ],
   }) : super(NavigationState(pages));
 
@@ -19,6 +23,17 @@ class NavigationCubit extends Cubit<NavigationState> {
     final newState = state.push(
       const SettingsPage(
         key: ValueKey("SettingsPage"),
+      ),
+    );
+
+    emit(newState);
+  }
+
+  Future<void> navigateToFish(Fish fish) async {
+    final newState = state.push(
+      FishPage(
+        fish,
+        key: const ValueKey("FishPage"),
       ),
     );
 

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/constant/enum/language_enum.dart';
-import 'package:flutter_template/logic/cubit/language_cubit.dart';
-import 'package:flutter_template/logic/cubit/time_cubit.dart';
+import 'package:new_acnh/constant/enum/language_enum.dart';
+import 'package:new_acnh/logic/cubit/language_cubit.dart';
+import 'package:new_acnh/logic/cubit/time_cubit.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 

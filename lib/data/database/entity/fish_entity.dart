@@ -1,7 +1,7 @@
-import 'package:flutter_template/data/api/response/fish_response.dart';
-import 'package:flutter_template/data/database/entity/availability_entity.dart';
-import 'package:flutter_template/data/database/entity/name_entity.dart';
-import 'package:flutter_template/model/fish.dart';
+import 'package:new_acnh/data/api/response/fish_response.dart';
+import 'package:new_acnh/data/database/entity/availability_entity.dart';
+import 'package:new_acnh/data/database/entity/name_entity.dart';
+import 'package:new_acnh/model/fish.dart';
 import 'package:hive/hive.dart';
 
 part 'fish_entity.g.dart';

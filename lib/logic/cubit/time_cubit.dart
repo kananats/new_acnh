@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_template/data/storage/shared_prefs.dart';
-import 'package:flutter_template/util/locator.dart';
+import 'package:new_acnh/data/storage/shared_prefs.dart';
+import 'package:new_acnh/util/locator.dart';
 
 part 'time_state.dart';
 

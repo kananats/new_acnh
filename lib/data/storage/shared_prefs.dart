@@ -1,5 +1,5 @@
-import 'package:flutter_template/constant/enum/language_enum.dart';
-import 'package:flutter_template/constant/enum/shared_prefs_key_enum.dart';
+import 'package:new_acnh/constant/enum/language_enum.dart';
+import 'package:new_acnh/constant/enum/shared_prefs_key_enum.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefs {

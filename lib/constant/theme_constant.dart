@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/constant/color_constant.dart';
+import 'package:new_acnh/constant/color_constant.dart';
 
 class ThemeConstant {
   static final theme = ThemeData(

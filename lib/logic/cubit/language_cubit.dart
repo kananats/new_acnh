@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter_template/constant/enum/language_enum.dart';
-import 'package:flutter_template/data/storage/shared_prefs.dart';
-import 'package:flutter_template/util/locator.dart';
+import 'package:new_acnh/constant/enum/language_enum.dart';
+import 'package:new_acnh/data/storage/shared_prefs.dart';
+import 'package:new_acnh/util/locator.dart';
 
 part 'language_state.dart';
 

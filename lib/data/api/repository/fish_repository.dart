@@ -1,8 +1,8 @@
-import 'package:flutter_template/data/api/api.dart';
-import 'package:flutter_template/data/database/database.dart';
-import 'package:flutter_template/data/database/entity/fish_entity.dart';
-import 'package:flutter_template/model/fish.dart';
-import 'package:flutter_template/util/locator.dart';
+import 'package:new_acnh/data/api/api.dart';
+import 'package:new_acnh/data/database/database.dart';
+import 'package:new_acnh/data/database/entity/fish_entity.dart';
+import 'package:new_acnh/model/fish.dart';
+import 'package:new_acnh/util/locator.dart';
 
 class FishRepository {
   final api = locator.get<Api>();

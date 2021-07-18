@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter_template/constant/enum/language_enum.dart';
-import 'package:flutter_template/data/database/entity/name_entity.dart';
+import 'package:new_acnh/constant/enum/language_enum.dart';
+import 'package:new_acnh/data/database/entity/name_entity.dart';
 
 class Name {
   final String USen;

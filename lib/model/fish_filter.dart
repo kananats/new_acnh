@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
-import 'package:flutter_template/constant/enum/language_enum.dart';
-import 'package:flutter_template/model/availability.dart';
+import 'package:new_acnh/constant/enum/hemisphere_enum.dart';
+import 'package:new_acnh/constant/enum/language_enum.dart';
+import 'package:new_acnh/model/availability.dart';
 
-import 'package:flutter_template/model/fish.dart';
-import 'package:flutter_template/model/name.dart';
+import 'package:new_acnh/model/fish.dart';
+import 'package:new_acnh/model/name.dart';
 
 class FishFilter extends Equatable {
   final HemisphereEnum hemisphere;

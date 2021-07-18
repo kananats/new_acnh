@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/logic/cubit/navigation_cubit.dart';
+import 'package:new_acnh/logic/cubit/navigation_cubit.dart';
 import 'package:provider/provider.dart';
 
 class AppDrawer extends StatelessWidget {

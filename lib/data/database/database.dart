@@ -1,7 +1,7 @@
-import 'package:flutter_template/data/database/dao.dart';
-import 'package:flutter_template/data/database/entity/availability_entity.dart';
-import 'package:flutter_template/data/database/entity/fish_entity.dart';
-import 'package:flutter_template/data/database/entity/name_entity.dart';
+import 'package:new_acnh/data/database/dao.dart';
+import 'package:new_acnh/data/database/entity/availability_entity.dart';
+import 'package:new_acnh/data/database/entity/fish_entity.dart';
+import 'package:new_acnh/data/database/entity/name_entity.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 

@@ -3,8 +3,8 @@
 
 import 'package:analyzer/dart/element/element.dart';
 import 'package:build/src/builder/build_step.dart';
-import 'package:flutter_template/constant/annotation/raw_representable.dart';
-import 'package:flutter_template/constant/annotation/raw_value.dart';
+import 'package:new_acnh/constant/annotation/raw_representable.dart';
+import 'package:new_acnh/constant/annotation/raw_value.dart';
 import 'package:source_gen/source_gen.dart';
 
 class RawPresentableGenerator extends GeneratorForAnnotation<RawRepresentable> {

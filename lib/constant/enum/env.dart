@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_template/data/api/mock.dart';
+import 'package:new_acnh/data/api/mock.dart';
 
 /// Build Environment
 enum Env {

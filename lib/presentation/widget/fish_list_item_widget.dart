@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
-import 'package:flutter_template/logic/cubit/fish_cubit.dart';
-import 'package:flutter_template/logic/cubit/language_cubit.dart';
-import 'package:flutter_template/logic/cubit/time_cubit.dart';
-import 'package:flutter_template/model/availability.dart';
-import 'package:flutter_template/model/fish.dart';
-import 'package:flutter_template/model/name.dart';
-import 'package:flutter_template/presentation/widget/tag_widget.dart';
-import 'package:flutter_template/util/extension/string_extension.dart';
+import 'package:new_acnh/constant/enum/hemisphere_enum.dart';
+import 'package:new_acnh/logic/cubit/fish_cubit.dart';
+import 'package:new_acnh/logic/cubit/language_cubit.dart';
+import 'package:new_acnh/logic/cubit/time_cubit.dart';
+import 'package:new_acnh/model/availability.dart';
+import 'package:new_acnh/model/fish.dart';
+import 'package:new_acnh/model/name.dart';
+import 'package:new_acnh/presentation/widget/tag_widget.dart';
+import 'package:new_acnh/util/extension/string_extension.dart';
 
 class FishListItemWidget extends StatelessWidget {
   final Fish fish;

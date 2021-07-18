@@ -1,7 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
-import 'package:flutter_template/data/api/response/name_response.dart';
-import 'package:flutter_template/model/name.dart';
+import 'package:new_acnh/data/api/response/name_response.dart';
+import 'package:new_acnh/model/name.dart';
 import 'package:hive/hive.dart';
 
 part 'name_entity.g.dart';

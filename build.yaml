@@ -6,7 +6,7 @@ targets:
 
 builders:
   raw_representable_generator:
-    import: "package:flutter_template/util/generator/builder.dart"
+    import: "package:new_acnh/util/generator/builder.dart"
     builder_factories: ["builder"]
     build_extensions: {".dart": ["raw_representable_generator.g.part"]}
     auto_apply: all_packages
