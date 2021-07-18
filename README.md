@@ -21,8 +21,11 @@ Tools • Dart 2.13.4
 ## Getting Started
 
 git clone git@github.com:kananats/new_acnh.git
+
 flutter pub get
+
 flutter pub run build_runner build --delete-conflicting-outputs
+
 flutter run
 
 ## Disclaimer
