@@ -66,9 +66,10 @@ class _FishFilterDialogState extends State<FishFilterDialog> {
       child: Row(
         children: [
           const Text("Hemisphere"),
-          const SizedBox(width: 12),
+          const SizedBox(width: 24),
           Expanded(
             child: DropdownButton<HemisphereEnum>(
+              isExpanded: true,
               value: _filter.hemisphere,
               onChanged: (value) {
                 setState(() => _filter = _filter.copyWith(hemisphere: value));

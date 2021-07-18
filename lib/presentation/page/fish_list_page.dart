@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_template/constant/enum/language_enum.dart';
 import 'package:flutter_template/logic/cubit/fish_cubit.dart';
+import 'package:flutter_template/logic/cubit/language_cubit.dart';
 import 'package:flutter_template/logic/cubit/time_cubit.dart';
 import 'package:flutter_template/model/fish.dart';
 import 'package:flutter_template/model/fish_filter.dart';
 import 'package:flutter_template/presentation/widget/app_drawer.dart';
 import 'package:flutter_template/presentation/widget/fish_filter_dialog.dart';
 import 'package:flutter_template/presentation/widget/fish_list_item_widget.dart';
+import 'package:flutter_template/util/debounce.dart';
 import 'package:provider/provider.dart';
 
 class FishListPage extends StatefulWidget {
@@ -19,6 +22,8 @@ class FishListPage extends StatefulWidget {
 }
 
 class _FishListPageState extends State<FishListPage> {
+  final _debounce = Debounce();
+
   @override
   void initState() {
     super.initState();
@@ -50,15 +55,47 @@ class _FishListPageState extends State<FishListPage> {
                         previous.dateTime.hour != current.dateTime.hour;
                   },
                   builder: (context, timeState) {
-                    return _buildFishList(
-                      fishState.fishes
-                          .where(
-                            (fish) => fishState.filter.apply(
-                              fish,
-                              dateTime: timeState.dateTime,
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: TextField(
+                            decoration: const InputDecoration(
+                              icon: Icon(Icons.search),
                             ),
-                          )
-                          .toList(),
+                            onChanged: (value) {
+                              _debounce(() {
+                                final newFilter =
+                                    fishState.filter.copyWith(query: value);
+
+                                context
+                                    .read<FishCubit>()
+                                    .applyFilter(newFilter);
+                              });
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: BlocBuilder<LanguageCubit, LanguageState>(
+                            builder: (context, languageState) {
+                              return _buildFishList(
+                                fishState.fishes
+                                    .where(
+                                      (fish) => fishState.filter.apply(
+                                        fish,
+                                        language:
+                                            languageState is ReadyLanguageState
+                                                ? languageState.language
+                                                : LanguageEnum.USen,
+                                        dateTime: timeState.dateTime,
+                                      ),
+                                    )
+                                    .toList(),
+                              );
+                            },
+                          ),
+                        ),
+                      ],
                     );
                   },
                 )
@@ -70,9 +107,14 @@ class _FishListPageState extends State<FishListPage> {
 
   Widget _buildFishList(List<Fish> fishes) {
     return ListView.builder(
+      shrinkWrap: true,
       itemCount: fishes.length,
       itemBuilder: (context, index) {
-        return FishListItemWidget(fishes[index]);
+        final fish = fishes[index];
+        return FishListItemWidget(
+          fish,
+          key: ValueKey(fish.id),
+        );
       },
     );
   }

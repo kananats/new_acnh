@@ -1,11 +1,15 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_template/constant/enum/hemisphere_enum.dart';
+import 'package:flutter_template/constant/enum/language_enum.dart';
 import 'package:flutter_template/model/availability.dart';
 
 import 'package:flutter_template/model/fish.dart';
+import 'package:flutter_template/model/name.dart';
 
 class FishFilter extends Equatable {
   final HemisphereEnum hemisphere;
+
+  final String query;
 
   final List<bool> showCaught;
   final List<bool> showDonated;
@@ -16,6 +20,7 @@ class FishFilter extends Equatable {
 
   const FishFilter({
     required this.hemisphere,
+    required this.query,
     required this.showCaught,
     required this.showDonated,
     required this.hideAllYear,
@@ -25,8 +30,11 @@ class FishFilter extends Equatable {
 
   bool apply(
     Fish fish, {
+    required LanguageEnum language,
     required DateTime dateTime,
   }) {
+    if (!fish.name.of(language).contains(query)) return false;
+
     if (!showCaught[0] && fish.isCaught) return false;
     if (!showCaught[1] && !fish.isCaught) return false;
 
@@ -47,6 +55,7 @@ class FishFilter extends Equatable {
 
   FishFilter copyWith({
     HemisphereEnum? hemisphere,
+    String? query,
     List<bool>? showCaught,
     List<bool>? showDonated,
     bool? hideAllYear,
@@ -55,6 +64,7 @@ class FishFilter extends Equatable {
   }) {
     return FishFilter(
       hemisphere: hemisphere ?? this.hemisphere,
+      query: query ?? this.query,
       showCaught: showCaught ?? this.showCaught,
       showDonated: showDonated ?? this.showDonated,
       hideAllYear: hideAllYear ?? this.hideAllYear,
@@ -66,6 +76,7 @@ class FishFilter extends Equatable {
   @override
   List<Object?> get props => [
         hemisphere,
+        query,
         showCaught,
         showDonated,
         hideAllYear,

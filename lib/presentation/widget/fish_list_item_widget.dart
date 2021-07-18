@@ -8,6 +8,7 @@ import 'package:flutter_template/model/availability.dart';
 import 'package:flutter_template/model/fish.dart';
 import 'package:flutter_template/model/name.dart';
 import 'package:flutter_template/presentation/widget/tag_widget.dart';
+import 'package:flutter_template/util/extension/string_extension.dart';
 
 class FishListItemWidget extends StatelessWidget {
   final Fish fish;
@@ -27,7 +28,9 @@ class FishListItemWidget extends StatelessWidget {
       title: BlocBuilder<LanguageCubit, LanguageState>(
         builder: (context, state) {
           return Text(
-            state is ReadyLanguageState ? fish.name.of(state.language) : "",
+            state is ReadyLanguageState
+                ? fish.name.of(state.language).capitalize()
+                : "",
           );
         },
       ),
@@ -59,6 +62,12 @@ class FishListItemWidget extends StatelessWidget {
         },
       ),
       children: [
+        Row(
+          children: [
+            _buildLocation(),
+            _buildShadow(),
+          ],
+        ),
         ButtonBar(
           alignment: MainAxisAlignment.center,
           children: [
@@ -67,6 +76,30 @@ class FishListItemWidget extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+
+  Widget _buildLocation() {
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.location_pin),
+          Text(fish.availability.location),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildShadow() {
+    return Expanded(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(Icons.bubble_chart),
+          Text(fish.shadow),
+        ],
+      ),
     );
   }
 

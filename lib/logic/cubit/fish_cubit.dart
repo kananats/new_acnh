@@ -14,6 +14,8 @@ class FishCubit extends Cubit<FishState> {
   FishCubit() : super(InitialFishState());
 
   Future<void> fetch() async {
+    final state = this.state;
+
     if (state is LoadingFishState) return;
 
     emit(LoadingFishState());
@@ -27,19 +29,20 @@ class FishCubit extends Cubit<FishState> {
       );
     }
 
-    // TODO:
-
     emit(
       ReadyFishState(
         fishes,
-        filter: const FishFilter(
-          hemisphere: HemisphereEnum.northern,
-          showCaught: [true, true],
-          showDonated: [true, true],
-          hideAllYear: false,
-          hideAllDay: false,
-          showOnlyNow: false,
-        ),
+        filter: (state is ReadyFishState)
+            ? state.filter.copyWith()
+            : const FishFilter(
+                hemisphere: HemisphereEnum.northern,
+                query: "",
+                showCaught: [true, true],
+                showDonated: [true, true],
+                hideAllYear: false,
+                hideAllDay: false,
+                showOnlyNow: false,
+              ),
       ),
     );
   }
