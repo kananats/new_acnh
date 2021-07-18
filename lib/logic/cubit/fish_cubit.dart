@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_template/data/api/repository/fish_repository.dart';
 import 'package:flutter_template/model/fish.dart';
+import 'package:flutter_template/model/fish_filter.dart';
 import 'package:flutter_template/util/locator.dart';
 
 part 'fish_state.dart';
@@ -25,7 +26,15 @@ class FishCubit extends Cubit<FishState> {
       );
     }
 
-    emit(ReadyFishState(fishes: fishes));
+    emit(
+      ReadyFishState(
+        fishes,
+        filter: const FishFilter(
+          showCaught: [true, true],
+          showDonated: [true, true],
+        ),
+      ),
+    );
   }
 
   Future<void> toggleIsCaught(Fish fish) async {
@@ -42,5 +51,18 @@ class FishCubit extends Cubit<FishState> {
     await fishRepository.updateFish(newFish);
 
     await fetch();
+  }
+
+  Future<void> applyFilter(FishFilter filter) async {
+    final state = this.state;
+
+    if (state is! ReadyFishState) return;
+
+    emit(
+      ReadyFishState(
+        state.fishes,
+        filter: filter,
+      ),
+    );
   }
 }

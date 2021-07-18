@@ -13,8 +13,13 @@ class LoadingFishState extends FishState {}
 
 class ReadyFishState extends FishState {
   final List<Fish> fishes;
+  final FishFilter filter;
 
-  const ReadyFishState({
-    required this.fishes,
+  const ReadyFishState(
+    this.fishes, {
+    required this.filter,
   });
+
+  @override
+  List<Object?> get props => [fishes, filter];
 }
